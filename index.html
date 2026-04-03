@@ -82,22 +82,26 @@
                   <div class="custom-dropdown" id="countryDropdown">
                     <div class="dropdown-trigger" onclick="toggleDropdown()">
                       <img
-                        src="images/uae-flag.svg"
+                        src="images/saudi_flag.jpg"
                         alt="UAE"
                         id="selected-flag"
                         class="phone-flag-img"
                       />
-                      <span id="selected-code" class="country-code">+971</span>
+                      <span id="selected-code" class="country-code">+966</span>
                       <span class="dropdown-arrow">▼</span>
                     </div>
 
                     <ul class="dropdown-menu" id="dropdownMenu">
-                      <li
+                      <!-- <li
                         onclick="selectCountry('+971', 'images/uae-flag.svg')"
                       >
                         <img src="images/uae-flag.svg" alt="UAE" /> +971
+                      </li> -->
+                      <li
+                        onclick="selectCountry('+966', 'images/saudi_flag.jpg')"
+                      >
+                        <img src="images/saudi_flag.jpg" alt="Saudi" /> +966
                       </li>
-
                     </ul>
                   </div>
 
