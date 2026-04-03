@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const registrationForm = document.getElementById('registrationForm');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxsBvqthRClczPYhZjsQm1p4-_BbvRqEQCBUB-0hDIlktDW3z_CcUZKjCIqAfIMamodHQ/exec'; // <--- Paste your App Script URL here
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby-n9ljGYq0OjYFVhXJ_qkVPgyy7ywGWbp0J41TRhjfr1G6ST_5K65Ntal50flN-zE/exec'; // <--- Paste your App Script URL here
 
     registrationForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData(registrationForm);
 
+        // Consolidate grade_levels[] checkboxes into a single comma-separated value
+        const checkedGradeValues = Array.from(checkedGrades).map(chk => chk.value);
+        formData.delete('grade_levels[]');
+        formData.set('grade_levels', checkedGradeValues.join(', '));
+
+        // Consolidate session[] checkboxes into a single comma-separated value
+        const checkedSessions = document.querySelectorAll('input[name="session[]"]:checked');
+        const sessionValues = Array.from(checkedSessions).map(chk => chk.value);
+        formData.delete('session[]');
+        formData.set('session', sessionValues.join(', '));
+
         // If "Other" subject is selected, use the text input value as the subject
         const selectedSubject = document.querySelector('input[name="subject"]:checked');
         if (selectedSubject && selectedSubject.value === 'Other') {
@@ -26,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.set('subject', 'Other: ' + otherValue);
             }
         }
+        formData.delete('other_subject');
 
         const countryCode = document.getElementById('country_code_input').value;
         let mobileNumber = document.getElementById('mobile').value.trim();
@@ -42,6 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Registration Successful! Check your email for confirmation.');
             registrationForm.reset();
             updateLabel();
+            // Hide the "Other" subject text field after reset
+            document.getElementById('otherSubject').style.display = 'none';
+            document.getElementById('otherSubject').required = false;
         })
         .catch(error => {
             console.error('Error!', error.message);
