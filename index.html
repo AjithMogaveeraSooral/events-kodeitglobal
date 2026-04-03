@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kodeit Educator Event Registration</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="blob blob-top-right"></div>
+
+    <main class="container">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kodeit Educator Event Registration</title>
+        <link rel="stylesheet" href="css/style.css" />
+
+        <script
+          type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+        ></script>
+
+        <script type="text/javascript">
+          (function () {
+            emailjs.init("9OmpRiJU4LVcLgMQB");
+          })();
+        </script>
+      </head>
+      <header class="event-header">
+        <div class="header-content">
+          <h1>Kodeit Educator Event</h1>
+          <p class="event-description">
+            Join us for an exciting Kodeit Educator Event! Learn new skills,
+            connect with peers, and discover innovative teaching methods.
+            Register now to secure your spot!
+          </p>
+        </div>
+        <div class="header-logo">
+          <img
+            src="images/Kodit_logo.png"
+            alt="Kodeit Logo"
+            class="main-logo"
+          />
+        </div>
+      </header>
+      <div class="main-content-grid">
+        <section class="left-column">
+          <div class="why-register-box">
+            <div class="why-register-content">
+              <h3>Why Register?</h3>
+              <ul class="benefits-list">
+                <li>
+                  <span class="check-icon">✓</span> Access to 500+ free
+                  resources
+                </li>
+                <li>
+                  <span class="check-icon">✓</span> Weekly expert-led webinars
+                </li>
+                <li>
+                  <span class="check-icon">✓</span> Community support forum
+                </li>
+              </ul>
+            </div>
+            <svg
+              class="geometric-shape"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 300 150"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0,150 V100 Q50,100 75,125 T150,150 Z"
+                fill="#ffffff"
+                opacity="0.2"
+              />
+            </svg>
+          </div>
+        </section>
+
+        <section class="right-column">
+          <div class="form-container">
+            <h2>Registration Form</h2>
+            <p class="form-description">Please fill in your details below.</p>
+
+            <hr class="form-divider" />
+
+            <form id="registrationForm" action="send_email.php" method="POST">
+              <div class="form-group">
+                <label for="fullName" class="form-label"
+                  >Full Name <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  class="form-input"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label"
+                  >Email Address <span class="required">*</span></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="mobile" class="form-label">
+                  Mobile Number (WhatsApp) <span class="required">*</span>
+                </label>
+
+                <div class="phone-input-container">
+                  <div class="custom-dropdown" id="countryDropdown">
+                    <div class="dropdown-trigger" onclick="toggleDropdown()">
+                      <img
+                        src="images/uae-flag.svg"
+                        alt="UAE"
+                        id="selected-flag"
+                        class="phone-flag-img"
+                      />
+                      <span id="selected-code" class="country-code">+971</span>
+                      <span class="dropdown-arrow">▼</span>
+                    </div>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                      <li
+                        onclick="selectCountry('+971', 'images/uae-flag.svg')"
+                      >
+                        <img src="images/uae-flag.svg" alt="UAE" /> +971
+                      </li>
+                      <li
+                        onclick="selectCountry('+966', 'images/saudi_flag.jpg')"
+                      >
+                        <img src="images/saudi_flag.jpg" alt="Saudi" /> +966
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="vertical-line"></div>
+
+                  <input
+                    type="tel"
+                    id="mobile"
+                    name="mobile"
+                    class="form-input phone-input"
+                    placeholder="Enter your mobile number"
+                    required
+                  />
+                </div>
+                <input
+                  type="hidden"
+                  name="country_code"
+                  id="country_code_input"
+                  value="+971"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="city" class="form-label"
+                  >City <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  class="form-input"
+                  placeholder="Enter your city"
+                  required
+                />
+              </div>
+
+              <div class="form-section">
+                <h3 class="section-title">Professional Details</h3>
+
+                <hr class="form-divider" />
+
+                <div class="form-group">
+                  <label for="school" class="form-label"
+                    >School / Institution Name
+                    <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="school"
+                    name="school"
+                    class="form-input"
+                    placeholder="Enter your school/institute name"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label"
+                    >Role <span class="required">*</span></label
+                  >
+                  <div class="role-options-grid">
+                    <label class="custom-radio">
+                      <input
+                        type="radio"
+                        name="role"
+                        value="Teacher"
+                        required
+                      />
+                      <span>Teacher</span>
+                    </label>
+                    <label class="custom-radio">
+                      <input
+                        type="radio"
+                        name="role"
+                        value="Subject Head / Coordinator"
+                      />
+                      <span>Subject Head / Coordinator</span>
+                    </label>
+                    <label class="custom-radio">
+                      <input type="radio" name="role" value="ICT Head" />
+                      <span>ICT Head</span>
+                    </label>
+                    <label class="custom-radio">
+                      <input type="radio" name="role" value="Academic Leader" />
+                      <span>Academic Leader</span>
+                    </label>
+                    <label class="custom-radio">
+                      <input
+                        type="radio"
+                        name="role"
+                        value="School Leadership"
+                      />
+                      <span>School Leadership</span>
+                    </label>
+                    <label class="custom-radio">
+                      <input type="radio" name="role" value="Other" />
+                      <span>Other</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Teaching Information</label>
+                <div class="custom-multiselect">
+                  <div class="select-box" onclick="toggleDropdown()">
+                    <span id="select-label">Select Grade Levels</span>
+                    <span class="arrow"></span>
+                  </div>
+                  <div class="checkboxes-container" id="checkboxes">
+                    <!-- <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="KG"
+                        onchange="updateLabel()"
+                      />
+                      KG
+                    </label> -->
+
+                    <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="Secondary"
+                        onchange="updateLabel()"
+                      />
+                      Kindergarten
+                    </label>
+
+                    <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="Primary"
+                        onchange="updateLabel()"
+                      />
+                      Primary
+                    </label>
+                    <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="Middle"
+                        onchange="updateLabel()"
+                      />
+                      Middle
+                    </label>
+                    <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="Secondary"
+                        onchange="updateLabel()"
+                      />
+                      Secondary
+                    </label>
+
+                    <!-- <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="Secondary"
+                        onchange="updateLabel()"
+                      />
+                      ICT
+                    </label> -->
+
+                    <!-- <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        name="grade_levels[]"
+                        class="grade-chk"
+                        value="Secondary"
+                        onchange="updateLabel()"
+                      />
+                      Social Science
+                    </label> -->
+
+                    <label class="checkbox-option">
+                      <input
+                        type="checkbox"
+                        id="selectAll"
+                        onclick="toggleSelectAll(this)"
+                      />
+                      <strong>Select All</strong>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"
+                  >Which subject areas are you most interested in learning more about?<span
+                    class="required"
+                    >*</span
+                  ></label
+                >
+                <div class="subject-options-grid">
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="Kindergarten" required />
+                    <span>Kindergarten</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="Math" />
+                    <span>Math</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="Science" />
+                    <span>Science</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="English" />
+                    <span>Science</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="Science" />
+                    <span>English</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="ICT (Information and Communication Technology)" />
+                    <span>ICT (Information and Communication Technology)</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="radio" name="subject" value="Other" onchange="toggleOtherSubject()" />
+                    <span>Other</span>
+                   </label>
+                </div>
+                <input
+                  type="text"
+                  id="otherSubject"
+                  name="other_subject"
+                  class="form-input"
+                  placeholder="Please specify your subject area"
+                  style="display: none; margin-top: 10px;"
+                />
+              </div>
+
+              <hr class="form-divider" />
+
+              <div class="form-section">
+                <h3 class="section-title">
+                  Which session(s) are you most interested in attending?
+                </h3>
+                <div class="subject-options-grid">
+                  <label class="custom-radio">
+                    <input type="checkbox" name="session[]" value="Reveal Math" />
+                    <span>Reveal Math</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="checkbox" name="session[]" value="Wonders" />
+                    <span>Wonders</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="checkbox" name="session[]" value="Inspire Science" />
+                    <span>Inspire Science</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="checkbox" name="session[]" value="StudySync" />
+                    <span>StudySync</span>
+                  </label>
+                  <label class="custom-radio">
+                    <input type="checkbox" name="session[]" value="Kodeit Kindergarten" />
+                    <span>Kodeit Kindergarten</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-submit-modern">
+                  Submit Registration
+                </button>
+                <button type="reset" class="btn-reset-modern">
+                  Reset Fields
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

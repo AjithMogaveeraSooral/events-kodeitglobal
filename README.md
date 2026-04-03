@@ -1,2 +1,2 @@
-# events-kodeitglobal
-Events KodeitGlobal
+# kodeit-educator-event
+Kodeit Educator Event
