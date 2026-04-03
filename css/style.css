@@ -84,9 +84,11 @@ h1 {
 
 .main-content-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr;
   gap: 50px;
   align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .why-register-box {
@@ -799,6 +801,14 @@ h1 {
 
   .main-content-grid {
     display: block;
+  }
+
+  .left-column {
+    display: none;
+  }
+
+  .event-description {
+    display: none;
   }
 
   .container {
